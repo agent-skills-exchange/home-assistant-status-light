@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "features": ["status-signals", "local-quiet-hours", "istrip-setup"],
+  "platforms": [
+    {"id": "linux", "os": "linux", "distribution": "any with Python 3.11+", "version": {"scheme": "none", "constraint": ""}, "architectures": ["x86_64", "aarch64"], "applies_to": ["status-signals", "local-quiet-hours", "istrip-setup"], "support": {"status": "declared", "evidence": []}},
+    {"id": "macos", "os": "macos", "distribution": "macOS with Python 3.11+", "version": {"scheme": "none", "constraint": ""}, "architectures": ["x86_64", "arm64"], "applies_to": ["status-signals", "local-quiet-hours", "istrip-setup"], "support": {"status": "declared", "evidence": []}},
+    {"id": "windows", "os": "windows", "distribution": "Windows with Python 3.11+", "version": {"scheme": "none", "constraint": ""}, "architectures": ["x86_64", "arm64"], "applies_to": ["status-signals", "local-quiet-hours", "istrip-setup"], "support": {"status": "declared", "evidence": []}}
+  ],
+  "hosts": [],
+  "software": [
+    {"id": "python", "kind": "runtime", "version": {"scheme": "pep440", "constraint": ">=3.11"}, "required": true, "applies_to": ["status-signals"], "platforms": ["linux", "macos", "windows"], "installation": {"method": "preinstalled", "package": "Python standard library only", "source": "https://www.python.org/downloads/", "instructions": "references/setup.md"}},
+    {"id": "tls-trust-store", "kind": "os-package", "version": {"scheme": "system", "constraint": "Host-provided trusted CA certificates for HTTPS"}, "required": true, "applies_to": ["status-signals"], "platforms": ["linux", "macos", "windows"], "installation": {"method": "preinstalled", "package": "CPython/platform certificate trust store", "source": "https://docs.python.org/3/library/ssl.html", "instructions": "references/setup.md"}},
+    {"id": "timezone-data", "kind": "os-package", "version": {"scheme": "system", "constraint": "Host-provisioned IANA timezone data; not required for UTC"}, "required": true, "applies_to": ["local-quiet-hours"], "platforms": ["linux", "macos", "windows"], "installation": {"method": "manual", "package": "System IANA database or separately provisioned Python tzdata", "source": "https://docs.python.org/3/library/zoneinfo.html", "instructions": "references/setup.md"}},
+    {"id": "home-assistant", "kind": "service", "version": {"scheme": "semver", "constraint": ">=2026.11.1"}, "required": true, "applies_to": ["status-signals"], "platforms": ["linux", "macos", "windows"], "installation": {"method": "preinstalled", "package": "Operator-provisioned HA REST API and RGB light", "source": "https://developers.home-assistant.io/docs/api/rest/", "instructions": "references/setup.md"}},
+    {"id": "esphome-proxy", "kind": "service", "version": {"scheme": "exact", "constraint": "2026.10.2 reference infrastructure; other versions unqualified"}, "required": false, "applies_to": ["istrip-setup"], "platforms": ["linux", "macos", "windows"], "installation": {"method": "manual", "package": "Separately provisioned compatible active BLE proxy", "source": "https://esphome.io/components/bluetooth_proxy/", "instructions": "references/setup.md"}},
+    {"id": "istrip-integration", "kind": "service", "version": {"scheme": "exact", "constraint": "044026ce0deb9120ddbd8ec186585a215f5d617f reference; independently verify current upstream"}, "required": false, "applies_to": ["istrip-setup"], "platforms": ["linux", "macos", "windows"], "installation": {"method": "manual", "package": "vakintosh/istrip_plus_HA; upstream MIT licence, not vendored", "source": "https://github.com/vakintosh/istrip_plus_HA", "instructions": "references/setup.md"}}
+  ],
+  "skills": [],
+  "network": [
+    {"id": "ha-api", "destination": "https://ha.example.invalid", "purpose": "Illustrative destination only. Site policy must bind the operator-configured HA base URL; only GET one light state and POST light.turn_on/turn_off. Trusted private HTTP is explicit opt-in, never an automatic fallback.", "required": true, "applies_to": ["status-signals"]},
+    {"id": "setup-docs", "destination": "https://github.com/vakintosh/istrip_plus_HA", "purpose": "Optional upstream setup/reference only; package does not download, execute or install it", "required": false, "applies_to": ["istrip-setup"]}
+  ],
+  "credentials": [
+    {"id": "ha-credential", "purpose": "Authorised light control through operator-supplied process environment; no token in package, argv or logs", "permissions": ["Read configured light state", "Call light.turn_on and light.turn_off on configured light under independent site policy; token may technically have broader access"], "provisioning": "references/setup.md", "required": true, "applies_to": ["status-signals"]}
+  ],
+  "lockfiles": []
+}

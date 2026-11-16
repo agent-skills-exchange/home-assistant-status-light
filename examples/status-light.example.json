@@ -1,0 +1,14 @@
+{
+  "base_url": "https://ha.example.invalid",
+  "entity_id": "light.status_strip",
+  "token_env": "HA_STATUS_LIGHT_TOKEN",
+  "allow_plain_http": false,
+  "max_brightness_pct": 20,
+  "quiet_hours": {"timezone": "UTC", "start": "22:00", "end": "08:00"},
+  "signals": {
+    "working": {"rgb": [0, 0, 255], "brightness_pct": 20, "seconds": 30},
+    "success": {"rgb": [0, 255, 0], "brightness_pct": 20, "seconds": 10},
+    "attention": {"rgb": [255, 120, 0], "brightness_pct": 20, "seconds": 30},
+    "failure": {"rgb": [255, 0, 0], "brightness_pct": 20, "seconds": 10}
+  }
+}
