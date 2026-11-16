@@ -20,6 +20,10 @@ Start with [setup and commissioning](references/setup.md), then read the narrow
 [SKILL.md](SKILL.md) instructions when the capability is needed. Useful
 [BLE/HA lessons](references/lessons.md) are separate, not always-loaded policy.
 Dependencies are declared in [dependencies.json](dependencies.json).
+Format and interoperability checks are documented in
+[Agent Skills compatibility](references/compatibility.md). The dependency
+manifest is an optional Exchange extension, not an Agent Skills core field or
+an automatic installer.
 
 ```sh
 python3 scripts/status_light.py --config /private/status-light.json signal working
@@ -48,6 +52,8 @@ private configuration per light. Do not claim cross-configuration locking or
 server-side leases. A durable unattended deployment needs separately authorised
 HA-side lifetime/ownership controls and acceptance testing.
 
-The package is a development candidate until its tests, static inspection,
-required independent review and hosted CI are accepted. It does not install
-itself or activate any host/global instructions.
+The initial implementation was merged in PR #1 after passing hosted CI and
+static checks, under a maintainer-approved exact-revision exception to pending
+independent review. That exception does not cover later changes. Merge is not
+independent review, live commissioning or activation. The package does not
+install itself or activate any host/global instructions.
