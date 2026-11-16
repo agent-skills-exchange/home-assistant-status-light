@@ -1,7 +1,10 @@
 # Agent Skills compatibility
 
 Checked against the public [Agent Skills specification](https://agentskills.io/specification)
-on 16 November 2026, using `skills-ref` 0.1.5. The published specification does
+on 16 November 2026, using the official Python `skills-ref` 0.1.0 at upstream
+commit `f130f348f502d9804278a617f86929846896d2e9`. An earlier check used a
+same-name npm tool (0.1.5); that was not the official reference validator.
+The official validator now passes too. The published specification does
 not supply a numbered format version; this is a dated compatibility check,
 not a certification or a promise about future revisions.
 
@@ -20,12 +23,24 @@ not a certification or a promise about future revisions.
 Validate from the directory containing the package:
 
 ```sh
-skills-ref validate ./home-assistant-status-light
+python -m pip install --require-hashes -r home-assistant-status-light/requirements-ci.txt
+python home-assistant-status-light/scripts/validate_package.py
 ```
 
-`skills-ref` is a development validator, not a runtime dependency. Format
+`requirements-ci.txt` pins the official validator source archive and development
+dependencies with hashes. The validator is imported by its Python module name,
+not an ambiguous host command. `skills-ref` is not a runtime dependency. Format
 validation checks frontmatter and naming; it is not a security review, an
 installation test or an end-to-end HA test.
+
+CI also validates the dependency JSON against the bundled draft v1 schema,
+cross-referenced features/platforms and local documentation/dependency files.
+External links and anchors are not fetched or validated. The schema snapshot
+is GPL-3.0-or-later Exchange draft source, byte-identical to the profile used
+for initial validation (SHA-256
+`4eb294994ba61661b5558ab5f60735bcb1404a137270bc4a6a806412a7a609ce`).
+It remains a draft extension, not an official Agent Skills schema. Validators
+are development-only; the operational helper remains standard-library-only.
 
 ## Exchange extension
 
