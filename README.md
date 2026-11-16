@@ -25,6 +25,12 @@ Format and interoperability checks are documented in
 manifest is an optional Exchange extension, not an Agent Skills core field or
 an automatic installer.
 
+CI checks the official Python Agent Skills reference format, the bundled draft
+dependency schema and local file references, alongside runtime regression tests.
+For the proposed HA-side expiry approach and commissioning gates, see
+[durable restoration](references/durable-restoration.md). This design is not
+implemented or installed; the current helper still restores in the foreground.
+
 ```sh
 python3 scripts/status_light.py --config /private/status-light.json signal working
 python3 scripts/status_light.py --config /private/status-light.json signal success --seconds 10

@@ -1,0 +1,4 @@
+# Development only; never required by the light-control helper.
+# Official Agent Skills reference implementation, not the same-name npm package.
+skills-ref @ https://github.com/agentskills/agentskills/archive/f130f348f502d9804278a617f86929846896d2e9.tar.gz#subdirectory=skills-ref
+jsonschema==4.25.1
