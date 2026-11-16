@@ -1,9 +1,14 @@
 ---
 name: home-assistant-status-light
-description: Show authorised task status on one Home Assistant RGB light, with timed restore, quiet hours and setup guidance.
+description: Show authorised task status on one Home Assistant RGB light with timed restore and quiet hours. Use when asked to display progress, success, attention or failure on a light, or set up an HA status indicator, including iStrip+ through ESPHome.
 license: GPL-3.0-or-later
+compatibility: Requires Python 3.11+, network access to an operator-configured Home Assistant REST API, an RGB light entity and an authorised credential supplied through the process environment. Non-UTC quiet hours need IANA timezone data. No Python runtime packages, specific agent host or local Bluetooth adapter required.
 metadata:
+  author: agent-skills-exchange
+  source: https://github.com/agent-skills-exchange/home-assistant-status-light
+  agent-skills-specification: https://agentskills.io/specification
   agent-skills-exchange-dependencies: dependencies.json
+  agent-skills-exchange-compatibility: references/compatibility.md
 ---
 
 # Home Assistant status light

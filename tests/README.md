@@ -21,3 +21,10 @@ in the unmodified GPL licence text, not executable instructions. The initial
 HIGH match was a rejected credential-file URL fixture; that fixture now uses a
 harmless synthetic file URL while retaining invalid-scheme coverage. No baseline
 was generated. These are author observations, not independent review approval.
+
+Hosted validation of the initial implementation: [Actions run 43875730256](https://github.com/agent-skills-exchange/home-assistant-status-light/actions/runs/43875730256)
+passed all 26 tests on Ubuntu 24.04 x86_64 with Python 3.11 and 3.14.
+PR #1 was merged with a maintainer-approved exact-revision exception to pending
+independent review; no independent review pass is claimed. That exception does
+not waive review for subsequent changes. Platform declarations remain broader
+than the tested Linux x86_64/Python matrix.
